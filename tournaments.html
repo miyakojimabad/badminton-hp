@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>大会情報｜宮古バドミントン協会</title>
+  <meta name="description" content="宮古バドミントン協会の大会情報ページ。募集要項、申込リンクなどを掲載します。" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <header class="header">
+    <div class="container">
+      <nav class="nav">
+        <a class="brand" href="index.html">
+          <div class="brand-mark" aria-hidden="true"></div>
+          <div class="brand-title">
+            <strong>宮古バドミントン協会</strong>
+            <span>公式サイト</span>
+          </div>
+        </a>
+
+        <div class="menu">
+          <a href="index.html">トップ</a>
+          <a class="active" href="tournaments.html">大会情報</a>
+          <a href="results.html">結果</a>
+          <a href="about.html">協会について</a>
+          <a href="contact.html">問い合わせ</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="section">
+      <div class="container">
+        <h1 style="margin:0 0 10px;">大会情報</h1>
+        <p class="small" style="margin:0 0 16px;">募集中の大会、要項PDF、申込リンクなどを掲載します。</p>
+
+        <div class="card" style="padding:14px;">
+          <div class="small" style="margin-bottom:8px;">表示</div>
+          <div class="actions" style="gap:10px; flex-wrap:wrap;">
+            <button class="btn" id="filterAll" type="button">すべて</button>
+            <button class="btn" id="filterOpen" type="button">募集中のみ</button>
+            <button class="btn" id="filterClosed" type="button">終了のみ</button>
+          </div>
+        </div>
+
+        <div style="height:14px;"></div>
+
+        <div class="grid" id="tournamentsGrid">
+          <div class="card box">読み込み中...</div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="row">
+        <div>© <span id="y"></span> 宮古バドミントン協会</div>
+        <div>更新担当：竹中悠（連絡先は問い合わせページへ）</div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("y").textContent = new Date().getFullYear();
+  </script>
+
+  <script>
+    // ★あなたのApps Script WebアプリURL（/execまで）に置き換え
+    const API_BASE = "https://script.google.com/macros/s/AKfycbzSk_APUGIBsY1GXxy7OHhlMmsbgguy2xrOTi3qrExbFsap8wOM6s_b-vQnyvPvGXW0/exec";
+
+    function esc(s){
+      return String(s ?? "")
+        .replaceAll("&","&amp;")
+        .replaceAll("<","&lt;")
+        .replaceAll(">","&gt;")
+        .replaceAll('"',"&quot;")
+        .replaceAll("'","&#39;");
+    }
+
+    // ★時間を消す（2026-01-10T15:00:00.000Z → 2026-01-10）
+    function formatDate(d){
+      if(!d) return "";
+      const dt = new Date(d);
+      if (isNaN(dt)) return String(d);
+      return dt.toISOString().slice(0,10);
+    }
+
+    function tagClass(tag){
+      if(tag === "募集中") return "open";
+      if(tag === "終了") return "closed";
+      return "";
+    }
+
+    // JSONP（CORS回避）
+    function jsonp(type){
+      return new Promise((resolve, reject) => {
+        const cb = "cb_" + Math.random().toString(16).slice(2);
+        window[cb] = (data) => {
+          delete window[cb];
+          script.remove();
+          resolve(data);
+        };
+        const script = document.createElement("script");
+        script.src = `${API_BASE}?type=${encodeURIComponent(type)}&callback=${cb}`;
+        script.onerror = () => reject(new Error("JSONP load failed"));
+        document.body.appendChild(script);
+      });
+    }
+
+    async function fetchItems(type){
+      const data = await jsonp(type);
+      if(!data.ok) throw new Error(data.error || "API error");
+      return data.items || [];
+    }
+
+    let ALL = [];
+    let MODE = "open"; // 初期は募集中
+
+    function normalizeStatus(t){
+      // status列がない場合は、tag列などでも代用できるように保険
+      return String(t.status || t.tag || "").trim();
+    }
+
+    function sortByDateAsc(a, b){
+      const da = new Date(a.date || 0).getTime();
+      const db = new Date(b.date || 0).getTime();
+      return da - db;
+    }
+
+    function render(){
+      const el = document.getElementById("tournamentsGrid");
+      if(!el) return;
+
+      let items = [...ALL];
+
+      if(MODE === "open"){
+        items = items.filter(t => normalizeStatus(t) === "募集中");
+      }else if(MODE === "closed"){
+        items = items.filter(t => normalizeStatus(t) === "終了");
+      }
+
+      // 日付がある前提で並び替え（ない場合は末尾に）
+      items.sort((a,b) => {
+        const da = a.date ? new Date(a.date).getTime() : Number.POSITIVE_INFINITY;
+        const db = b.date ? new Date(b.date).getTime() : Number.POSITIVE_INFINITY;
+        return da - db;
+      });
+
+      if(items.length === 0){
+        el.innerHTML = `<div class="card box">表示できる大会情報がありません</div>`;
+        return;
+      }
+
+      el.innerHTML = items.map(t => {
+        const name = t.name || t.title || "";
+        const status = normalizeStatus(t);
+        const date = formatDate(t.date);
+        const venue = t.venue || "未定";
+
+        // 任意フィールド（あると便利）
+        const deadline = t.deadline ? formatDate(t.deadline) : "";
+        const pdf  = t.youkou_pdf || t.pdf || t.pdf_url || "";
+        const form = t.form_url || t.form || "";
+        const url = t.url || ""; // 詳細ページ等
+
+        return `
+          <div class="card box">
+            <div class="meta" style="margin-bottom:8px;">
+              ${status ? `<span class="tag ${tagClass(status)}">${esc(status)}</span>` : ""}
+              ${date ? `<span>開催日：${esc(date)}</span>` : ""}
+            </div>
+
+            <h3 style="margin:0 0 8px;">${esc(name)}</h3>
+
+            <p class="small" style="margin:0 0 10px;">
+              会場：${esc(venue)}
+              ${deadline ? `<br>締切：${esc(deadline)}` : ""}
+            </p>
+
+            <div class="actions" style="gap:10px; flex-wrap:wrap;">
+              ${pdf ? `<a class="btn" href="${esc(pdf)}">要項PDF</a>` : ""}
+              ${form ? `<a class="btn primary" href="${esc(form)}">申込</a>` : ""}
+              ${url ? `<a class="btn" href="${esc(url)}">詳細</a>` : ""}
+            </div>
+          </div>
+        `;
+      }).join("");
+    }
+
+    async function load(){
+      const el = document.getElementById("tournamentsGrid");
+      try{
+        ALL = await fetchItems("tournaments");
+        render();
+      }catch(e){
+        console.error(e);
+        el.innerHTML = `<div class="card box">大会情報の読み込みに失敗しました</div>`;
+      }
+    }
+
+    document.getElementById("filterAll").addEventListener("click", () => { MODE="all"; render(); });
+    document.getElementById("filterOpen").addEventListener("click", () => { MODE="open"; render(); });
+    document.getElementById("filterClosed").addEventListener("click", () => { MODE="closed"; render(); });
+
+    load();
+  </script>
+</body>
+</html>

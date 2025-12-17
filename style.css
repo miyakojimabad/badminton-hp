@@ -1,0 +1,345 @@
+/* =========================
+   基本設定
+========================= */
+:root{
+  --bg:#0b1220;
+  --card:#121a2b;
+  --text:#e8eefc;
+  --muted:#a7b3d6;
+  --line:#223055;
+  --accent:#4aa3ff;
+  --accent2:#77ffb3;
+  --danger:#ff6b6b;
+  --shadow: 0 10px 30px rgba(0,0,0,.25);
+  --radius: 16px;
+}
+
+*{
+  box-sizing: border-box;
+}
+
+html, body{
+  margin: 0;
+  padding: 0;
+}
+
+body{
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans",
+               "Noto Sans JP", "Segoe UI", Arial, sans-serif;
+
+  background:
+    radial-gradient(
+      900px 600px at 20% 10%,
+      rgba(111,160,255,0.22),
+      transparent 60%
+    ),
+    radial-gradient(
+      800px 500px at 80% 20%,
+      rgba(80,210,200,0.18),
+      transparent 65%
+    ),
+    radial-gradient(
+      700px 500px at 50% 90%,
+      rgba(255,120,180,0.08),
+      transparent 70%
+    ),
+    linear-gradient(
+      135deg,
+      #0b1026 0%,   /* 深夜の海 */
+      #1a1f3b 35%,  /* ネイビーパープル */
+      #123a45 65%,  /* ダークエメラルド */
+      #0a2b2e 100%  /* 夜の浅瀬 */
+    );
+
+  color: var(--text);
+  font-size: 18px;
+  line-height: 1.9;
+}
+
+/* =========================
+   共通テキスト
+========================= */
+a{
+  color: var(--accent);
+  text-decoration: none;
+}
+a:hover{
+  text-decoration: underline;
+}
+
+h1{
+  font-size: 32px;
+  margin: 0 0 12px;
+}
+h2{
+  font-size: 24px;
+  margin: 0 0 10px;
+}
+h3{
+  font-size: 20px;
+  margin: 0 0 8px;
+}
+
+p, li{
+  font-size: 18px;
+}
+
+/* =========================
+   レイアウト
+========================= */
+.container{
+  width: min(1100px, 92vw);
+  margin: 0 auto;
+}
+
+/* =========================
+   ヘッダー・ナビ
+========================= */
+.header{
+  position: sticky;
+  top: 0;
+  background: rgba(11,18,32,.85);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--line);
+  z-index: 50;
+}
+
+.nav{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 0;
+}
+
+.brand{
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--text);
+}
+.brand-mark{
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+}
+.brand-title strong{
+  font-size: 15px;
+}
+.brand-title span{
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.menu{
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.menu a{
+  padding: 8px 12px;
+  border-radius: 10px;
+  color: var(--muted);
+  border: 1px solid transparent;
+}
+.menu a:hover,
+.menu a.active{
+  color: var(--text);
+  border-color: rgba(74,163,255,.4);
+  background: rgba(18,26,43,.7);
+  text-decoration: none;
+}
+
+/* =========================
+   カード・ボックス
+========================= */
+.card{
+  background: rgba(18,26,43,.85);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.box{
+  padding: 18px;
+}
+
+/* =========================
+   Hero（トップ）
+========================= */
+.hero{
+  padding: 40px 0 30px;
+}
+
+.hero-grid{
+  display: grid;
+  grid-template-columns: 1.3fr .7fr;
+  gap: 18px;
+}
+
+@media (max-width: 860px){
+  .hero-grid{
+    grid-template-columns: 1fr;
+  }
+}
+
+.hero-main{
+  padding: 22px;
+}
+
+.badge{
+  display: inline-block;
+  padding: 6px 12px;
+  font-size: 14px;
+  border-radius: 999px;
+  background: rgba(74,163,255,.15);
+  border: 1px solid rgba(74,163,255,.3);
+  color: var(--muted);
+}
+
+.actions{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.btn{
+  padding: 10px 14px;
+  border-radius: 12px;
+  border: 1px solid var(--line);
+  background: rgba(11,18,32,.5);
+  color: var(--text);
+  font-weight: 600;
+}
+.btn:hover{
+  background: rgba(18,26,43,.9);
+  border-color: var(--accent);
+  text-decoration: none;
+}
+.btn.primary{
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  color: #061020;
+  border: none;
+}
+
+/* =========================
+   お知らせリスト
+========================= */
+.list{
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.item{
+  padding: 14px;
+  border-radius: 14px;
+  border: 1px solid var(--line);
+  background: rgba(11,18,32,.4);
+}
+
+.meta{
+  font-size: 14px;
+  color: var(--muted);
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.tag{
+  padding: 2px 10px;
+  border-radius: 999px;
+  font-size: 13px;
+  border: 1px solid var(--line);
+}
+.tag.open{
+  border-color: rgba(119,255,179,.6);
+  color: #c9ffe6;
+}
+.tag.closed{
+  border-color: rgba(255,107,107,.6);
+  color: #ffd1d1;
+}
+
+/* =========================
+   セクション・グリッド
+========================= */
+.section{
+  padding: 20px 0 50px;
+}
+
+.grid{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+
+@media (max-width: 860px){
+  .grid{
+    grid-template-columns: 1fr;
+  }
+}
+
+/* =========================
+   テーブル
+========================= */
+.table{
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table th,
+.table td{
+  padding: 12px;
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+  vertical-align: top;
+}
+
+.table th{
+  background: rgba(11,18,32,.4);
+  color: var(--muted);
+  font-weight: 600;
+}
+
+/* =========================
+   ページ共通
+========================= */
+.page{
+  padding: 30px 0 50px;
+}
+
+.note{
+  color: var(--muted);
+  margin-bottom: 14px;
+}
+
+/* =========================
+   フッター
+========================= */
+.footer{
+  border-top: 1px solid var(--line);
+  padding: 20px 0 30px;
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.footer .row{
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+/* =========================
+   スマホ微調整
+========================= */
+@media (max-width: 600px){
+  body{
+    font-size: 17px;
+  }
+  h1{
+    font-size: 26px;
+  }
+}
