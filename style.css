@@ -269,15 +269,15 @@ a:hover{
     font-size: 24px;
   }
 }
-/* ===== 大会結果ボタン ===== */
-.btn.result {
-  background: linear-gradient(135deg, #3b82f6, #2563eb);
-  color: #fff;
-  border: none;
+/* 大会結果ボタン（強制適用） */
+.actions .btn.result{
+  background: linear-gradient(135deg, #3b82f6, #2563eb) !important;
+  color: #fff !important;
+  border: none !important;
 }
 
-.btn.result:hover {
-  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+.actions .btn.result:hover{
+  background: linear-gradient(135deg, #2563eb, #1d4ed8) !important;
   transform: translateY(-1px);
   box-shadow: 0 8px 20px rgba(37, 99, 235, 0.35);
 }
