@@ -420,3 +420,26 @@ p, li{
   margin-left: 0;
   text-align: left;
 }
+/* ===== ヒーローカード背景画像 ===== */
+.hero-main {
+  position: relative;
+  overflow: hidden;
+
+  /* 背景画像 */
+  background-image:
+    linear-gradient(
+      rgba(10, 20, 40, 0.75),
+      rgba(10, 20, 40, 0.75)
+    ),
+    url("images/hero-bg.jpg");
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* 中身を前面に出す（念のため） */
+.hero-main > * {
+  position: relative;
+  z-index: 1;
+}
