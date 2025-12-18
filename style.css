@@ -1,19 +1,6 @@
 /* =========================
-   基本設定
+   リセット & 共通
 ========================= */
-:root{
-  --bg:#0b1220;
-  --card:#121a2b;
-  --text:#e8eefc;
-  --muted:#a7b3d6;
-  --line:#223055;
-  --accent:#4aa3ff;
-  --accent2:#77ffb3;
-  --danger:#ff6b6b;
-  --shadow: 0 10px 30px rgba(0,0,0,.25);
-  --radius: 16px;
-}
-
 *{
   box-sizing: border-box;
 }
@@ -21,211 +8,173 @@
 html, body{
   margin: 0;
   padding: 0;
-}
-
-body{
   font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans",
-               "Noto Sans JP", "Segoe UI", Arial, sans-serif;
-
-  background:
-    radial-gradient(
-      900px 600px at 20% 10%,
-      rgba(111,160,255,0.22),
-      transparent 60%
-    ),
-    radial-gradient(
-      800px 500px at 80% 20%,
-      rgba(80,210,200,0.18),
-      transparent 65%
-    ),
-    radial-gradient(
-      700px 500px at 50% 90%,
-      rgba(255,120,180,0.08),
-      transparent 70%
-    ),
-    linear-gradient(
-      135deg,
-      #0b1026 0%,   /* 深夜の海 */
-      #1a1f3b 35%,  /* ネイビーパープル */
-      #123a45 65%,  /* ダークエメラルド */
-      #0a2b2e 100%  /* 夜の浅瀬 */
-    );
-
-  color: var(--text);
-  font-size: 18px;
-  line-height: 1.9;
+               "Noto Sans JP", "Segoe UI", sans-serif;
+  color: #fff;
+  background: linear-gradient(120deg, #1b2a4e, #1f6f78);
 }
 
-/* =========================
-   共通テキスト
-========================= */
 a{
-  color: var(--accent);
+  color: #7dd3fc;
   text-decoration: none;
 }
 a:hover{
-  text-decoration: underline;
+  opacity: .85;
 }
 
-h1{
-  font-size: 32px;
-  margin: 0 0 12px;
-}
-h2{
-  font-size: 24px;
-  margin: 0 0 10px;
-}
-h3{
-  font-size: 20px;
-  margin: 0 0 8px;
-}
-
-p, li{
-  font-size: 18px;
-}
-
-/* =========================
-   レイアウト
-========================= */
 .container{
-  width: min(1100px, 92vw);
+  max-width: 1100px;
   margin: 0 auto;
+  padding: 0 16px;
+}
+
+.small{
+  font-size: 14px;
+  opacity: .85;
 }
 
 /* =========================
-   ヘッダー・ナビ
+   ヘッダー / ナビ
 ========================= */
 .header{
   position: sticky;
   top: 0;
-  background: rgba(11,18,32,.85);
+  z-index: 100;
+  background: rgba(10,20,40,.9);
   backdrop-filter: blur(8px);
-  border-bottom: 1px solid var(--line);
-  z-index: 50;
 }
 
 .nav{
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding: 14px 0;
+  justify-content: space-between;
+  min-height: 64px;
 }
 
 .brand{
   display: flex;
   align-items: center;
   gap: 12px;
-  color: var(--text);
 }
+
 .brand-mark{
   width: 36px;
   height: 36px;
   border-radius: 10px;
-  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  background: linear-gradient(135deg,#7dd3fc,#34d399);
 }
+
 .brand-title strong{
+  display: block;
   font-size: 15px;
 }
 .brand-title span{
-  font-size: 13px;
-  color: var(--muted);
+  font-size: 12px;
+  opacity: .7;
 }
 
 .menu{
   display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
+  gap: 18px;
 }
+
 .menu a{
-  padding: 8px 12px;
+  padding: 8px 14px;
   border-radius: 10px;
-  color: var(--muted);
-  border: 1px solid transparent;
+  font-size: 14px;
+  color: #e5e7eb;
 }
-.menu a:hover,
 .menu a.active{
-  color: var(--text);
-  border-color: rgba(74,163,255,.4);
-  background: rgba(18,26,43,.7);
-  text-decoration: none;
+  background: rgba(125,211,252,.15);
+  border: 1px solid rgba(125,211,252,.35);
 }
 
 /* =========================
-   カード・ボックス
+   カード共通
 ========================= */
 .card{
-  background: rgba(18,26,43,.85);
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-}
-
-.box{
-  padding: 18px;
+  background: rgba(15,30,60,.6);
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 18px;
+  padding: 22px;
 }
 
 /* =========================
-   Hero（トップ）
+   ヒーロー
 ========================= */
 .hero{
-  padding: 40px 0 30px;
+  padding: 40px 0 24px;
 }
 
 .hero-grid{
   display: grid;
-  grid-template-columns: 1.3fr .7fr;
-  gap: 18px;
+  grid-template-columns: 2fr 1fr;
+  gap: 20px;
 }
 
-@media (max-width: 860px){
-  .hero-grid{
-    grid-template-columns: 1fr;
-  }
-}
-
+/* ★ メインヒーローカード（背景画像） */
 .hero-main{
-  padding: 22px;
+  position: relative;
+  overflow: hidden;
+
+  background:
+    linear-gradient(rgba(10,20,40,.75), rgba(10,20,40,.75)),
+    url("images/hero-bg.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .badge{
   display: inline-block;
-  padding: 6px 12px;
-  font-size: 14px;
+  font-size: 13px;
+  padding: 6px 10px;
   border-radius: 999px;
-  background: rgba(74,163,255,.15);
-  border: 1px solid rgba(74,163,255,.3);
-  color: var(--muted);
+  background: rgba(125,211,252,.18);
+  border: 1px solid rgba(125,211,252,.35);
+  margin-bottom: 14px;
+}
+
+.hero-main h1{
+  font-size: 28px;
+  line-height: 1.4;
+  margin: 0 0 10px;
+}
+
+.hero-main p{
+  margin: 0 0 18px;
+  opacity: .9;
 }
 
 .actions{
   display: flex;
+  gap: 12px;
   flex-wrap: wrap;
-  gap: 10px;
-  margin-top: 14px;
 }
 
 .btn{
-  padding: 10px 14px;
+  padding: 12px 18px;
   border-radius: 12px;
-  border: 1px solid var(--line);
-  background: rgba(11,18,32,.5);
-  color: var(--text);
-  font-weight: 600;
+  border: 1px solid rgba(255,255,255,.2);
+  background: rgba(255,255,255,.08);
+  color: #fff;
+  font-size: 14px;
 }
-.btn:hover{
-  background: rgba(18,26,43,.9);
-  border-color: var(--accent);
-  text-decoration: none;
-}
+
 .btn.primary{
-  background: linear-gradient(135deg, var(--accent), var(--accent2));
-  color: #061020;
+  background: linear-gradient(135deg,#7dd3fc,#34d399);
+  color: #003;
   border: none;
 }
 
 /* =========================
-   お知らせリスト
+   お知らせ
 ========================= */
+.hero-side h2{
+  margin: 0 0 14px;
+  font-size: 18px;
+}
+
 .list{
   display: flex;
   flex-direction: column;
@@ -233,202 +182,90 @@ p, li{
 }
 
 .item{
-  padding: 14px;
-  border-radius: 14px;
-  border: 1px solid var(--line);
-  background: rgba(11,18,32,.4);
+  background: rgba(255,255,255,.05);
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 12px;
+  padding: 12px;
 }
 
 .meta{
-  font-size: 14px;
-  color: var(--muted);
   display: flex;
   gap: 10px;
-  flex-wrap: wrap;
+  font-size: 12px;
+  opacity: .85;
+  margin-bottom: 6px;
 }
 
 .tag{
-  padding: 2px 10px;
+  padding: 2px 8px;
   border-radius: 999px;
-  font-size: 13px;
-  border: 1px solid var(--line);
+  font-size: 11px;
+  background: rgba(255,255,255,.15);
 }
+
 .tag.open{
-  border-color: rgba(119,255,179,.6);
-  color: #c9ffe6;
+  background: rgba(52,211,153,.25);
 }
 .tag.closed{
-  border-color: rgba(255,107,107,.6);
-  color: #ffd1d1;
+  background: rgba(239,68,68,.25);
 }
 
 /* =========================
-   セクション・グリッド
+   セクション共通
 ========================= */
 .section{
-  padding: 20px 0 50px;
+  padding: 32px 0;
 }
 
+.section h2{
+  font-size: 22px;
+  margin: 0 0 18px;
+}
+
+/* =========================
+   グリッド
+========================= */
 .grid{
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 14px;
+  grid-template-columns: repeat(auto-fit,minmax(260px,1fr));
+  gap: 18px;
 }
 
-@media (max-width: 860px){
-  .grid{
-    grid-template-columns: 1fr;
-  }
-}
-
-/* =========================
-   テーブル
-========================= */
-.table{
-  width: 100%;
-  border-collapse: collapse;
-}
-
-.table th,
-.table td{
-  padding: 12px;
-  border-bottom: 1px solid var(--line);
-  text-align: left;
-  vertical-align: top;
-}
-
-.table th{
-  background: rgba(11,18,32,.4);
-  color: var(--muted);
-  font-weight: 600;
-}
-
-/* =========================
-   ページ共通
-========================= */
-.page{
-  padding: 30px 0 50px;
-}
-
-.note{
-  color: var(--muted);
-  margin-bottom: 14px;
+.box h3{
+  margin: 0 0 8px;
+  font-size: 17px;
 }
 
 /* =========================
    フッター
 ========================= */
 .footer{
-  border-top: 1px solid var(--line);
-  padding: 20px 0 30px;
-  font-size: 14px;
-  color: var(--muted);
+  margin-top: 40px;
+  padding: 20px 0;
+  background: rgba(10,20,40,.8);
 }
 
 .footer .row{
   display: flex;
   justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 10px;
+  gap: 12px;
+  font-size: 13px;
+  opacity: .75;
 }
 
 /* =========================
-   スマホ微調整
+   スマホ対応
 ========================= */
-@media (max-width: 600px){
-  body{
-    font-size: 17px;
-  }
-  h1{
-    font-size: 26px;
-  }
-}
-/* =========================
-   Mobile header fix
-========================= */
-@media (max-width: 720px) {
-  /* ヘッダー全体 */
-  header .container,
-  .header .container {
-    padding: 12px 14px;
+@media (max-width: 900px){
+  .hero-grid{
+    grid-template-columns: 1fr;
   }
 
-  /* ロゴ＋タイトルの塊を “横並び固定” */
-  .brand,
-  .site-brand,
-  header .brand {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    min-width: 0; /* 省略(...)のため */
-  }
-
-  /* タイトル/サブタイトルが入ってる箱 */
-  .brand-text,
-  .site-title,
-  .brand .text,
-  header .brand .text {
-    min-width: 0;
-  }
-
-  /* サイト名（1行にして、長ければ ...） */
-  .brand-title,
-  .site-name,
-  header .brand h1,
-  header .brand .title {
-    font-size: 14px;
-    line-height: 1.2;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    max-width: 52vw; /* ここを 48〜60vw で調整OK */
-  }
-
-  /* “公式 / サイト” みたいなサブ文字はスマホでは消す */
-  .brand-subtitle,
-  .site-subtitle,
-  header .brand small,
-  header .brand .subtitle {
-    display: none;
-  }
-
-  /* 右側メニューが潰れないように */
-  nav,
-  .nav {
-    flex-wrap: wrap;
+  .menu{
     gap: 8px;
-    justify-content: flex-end;
   }
 
-  nav a,
-  .nav a {
-    font-size: 14px;
-    padding: 10px 12px;
+  .hero-main h1{
+    font-size: 24px;
   }
-}
-/* =========================
-   お知らせ 見出し位置修正（PC・スマホ共通）
-========================= */
-
-.notice-section {
-  max-width: 1100px;   /* 他カードと同じ幅 */
-  margin: 0 auto;      /* 中央寄せ */
-  padding: 0 20px;     /* 左右余白 */
-}
-
-.notice-title {
-  margin-left: 0;
-  text-align: left;
-}
-/* ヒーローカードに背景画像（最優先で適用） */
-.hero-main{
-  position: relative;
-  overflow: hidden;
-
-  background:
-    linear-gradient(rgba(10,20,40,.72), rgba(10,20,40,.72)),
-    url("images/hero-bg.jpg") !important;
-  background-size: cover !important;
-  background-position: center !important;
-  background-repeat: no-repeat !important;
 }
