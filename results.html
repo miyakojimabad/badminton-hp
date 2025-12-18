@@ -2,9 +2,9 @@
 <html lang="ja">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>大会結果｜宮古バドミントン協会</title>
-  <meta name="description" content="宮古バドミントン協会の大会結果ページ。結果PDFなどを掲載します。" />
+  <meta name="description" content="宮古バドミントン協会の大会結果ページ。結果PDF、入賞者、トーナメント表などを掲載します。" />
   <link rel="stylesheet" href="style.css" />
 </head>
 
@@ -34,10 +34,12 @@
   <main>
     <section class="section">
       <div class="container">
-        <h1 style="margin:0 0 10px;">大会結果</h1>
-        <p class="small" style="margin:0 0 16px;">結果PDF、入賞者、トーナメント表などを掲載できます。</p>
+        <h1>大会結果</h1>
+        <p class="small" style="margin-top:8px;">
+          結果PDF、入賞者、トーナメント表などを掲載できます（スプレッドシートから自動反映）。
+        </p>
 
-        <div class="grid" id="resultsGrid">
+        <div class="grid" id="resultsGrid" style="margin-top:18px;">
           <div class="card box">読み込み中...</div>
         </div>
       </div>
@@ -57,6 +59,7 @@
     document.getElementById("y").textContent = new Date().getFullYear();
   </script>
 
+  <!-- ===== スプレッドシート連携（JSONP版） ===== -->
   <script>
     // ★あなたのApps Script WebアプリURL（/execまで）に置き換え
     const API_BASE = "https://script.google.com/macros/s/AKfycbzSk_APUGIBsY1GXxy7OHhlMmsbgguy2xrOTi3qrExbFsap8wOM6s_b-vQnyvPvGXW0/exec";
@@ -70,12 +73,12 @@
         .replaceAll("'","&#39;");
     }
 
-    // ★時間を消す（2026-01-10T15:00:00.000Z → 2026-01-10）
+    // 2026-01-10T15:00:00.000Z → 2026-01-10
     function formatDate(d){
       if(!d) return "";
       const dt = new Date(d);
-      if (isNaN(dt)) return String(d);
-      return dt.toISOString().slice(0,10);
+      if (isNaN(dt)) return String(d);     // もし既に文字列ならそのまま
+      return dt.toISOString().slice(0,10); // YYYY-MM-DD
     }
 
     // JSONP（CORS回避）
@@ -100,52 +103,61 @@
       return data.items || [];
     }
 
-    function sortByDateDesc(a, b){
-      const da = a.date ? new Date(a.date).getTime() : 0;
-      const db = b.date ? new Date(b.date).getTime() : 0;
-      return db - da;
-    }
-
-    async function load(){
+    // ===== 結果 =====
+    async function loadResults(){
       const el = document.getElementById("resultsGrid");
-      try{
-        let items = await fetchItems("results");
-        items = items.sort(sortByDateDesc);
+      if(!el) return;
 
-        if(items.length === 0){
+      try{
+        const items = await fetchItems("results");
+
+        // active列があるなら TRUE のみ表示（なければ全表示）
+        const list = items.filter(r => {
+          const a = r.active;
+          if (a === undefined || a === null || a === "") return true;
+          return String(a).toLowerCase() === "true";
+        });
+
+        if(list.length === 0){
           el.innerHTML = `<div class="card box">結果はまだありません</div>`;
           return;
         }
 
-        el.innerHTML = items.map(r => {
-          const title = r.title || r.name || "";
-          const date = formatDate(r.date);
-          const pdf = r.pdf || r.pdf_url || r.url || "";
-          const note = r.note || r.description || "";
+        el.innerHTML = list.map(r => {
+          const title = esc(r.name || "");
+          const date  = esc(formatDate(r.date));
+          // note列（見出しが note ならこれでOK）
+          // もし見出しが「備考」などなら r["備考"] に変更してね
+          const note  = esc(r.note || "");
+          const pdf   = r.result_pdf ? esc(r.result_pdf) : "";
 
           return `
             <div class="card box">
-              <div class="meta" style="margin-bottom:8px;">
-                ${date ? `<span>${esc(date)}</span>` : ""}
+              <div class="meta">
+                <span>${date}</span>
               </div>
 
-              <h3 style="margin:0 0 8px;">${esc(title)}</h3>
+              <h3>${title}</h3>
 
-              ${note ? `<p class="small" style="margin:0 0 10px;">${esc(note)}</p>` : ""}
+              ${note ? `<p class="small" style="margin-top:8px;">${note}</p>` : ""}
 
-              <div class="actions" style="gap:10px; flex-wrap:wrap;">
-                ${pdf ? `<a class="btn primary" href="${esc(pdf)}">結果PDFを開く</a>` : ""}
+              <div style="margin-top:12px; display:flex; gap:10px; flex-wrap:wrap;">
+                ${pdf
+                  ? `<a class="btn" href="${pdf}" target="_blank" rel="noopener">結果PDFを見る →</a>`
+                  : `<span class="small">PDF未設定</span>`
+                }
               </div>
             </div>
           `;
         }).join("");
+
       }catch(e){
         console.error(e);
         el.innerHTML = `<div class="card box">結果の読み込みに失敗しました</div>`;
       }
     }
 
-    load();
+    loadResults();
   </script>
 </body>
 </html>
