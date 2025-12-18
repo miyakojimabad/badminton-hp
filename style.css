@@ -343,3 +343,80 @@ p, li{
     font-size: 26px;
   }
 }
+/* =========================
+   Mobile header fix
+========================= */
+@media (max-width: 720px) {
+  /* ヘッダー全体 */
+  header .container,
+  .header .container {
+    padding: 12px 14px;
+  }
+
+  /* ロゴ＋タイトルの塊を “横並び固定” */
+  .brand,
+  .site-brand,
+  header .brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 0; /* 省略(...)のため */
+  }
+
+  /* タイトル/サブタイトルが入ってる箱 */
+  .brand-text,
+  .site-title,
+  .brand .text,
+  header .brand .text {
+    min-width: 0;
+  }
+
+  /* サイト名（1行にして、長ければ ...） */
+  .brand-title,
+  .site-name,
+  header .brand h1,
+  header .brand .title {
+    font-size: 14px;
+    line-height: 1.2;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 52vw; /* ここを 48〜60vw で調整OK */
+  }
+
+  /* “公式 / サイト” みたいなサブ文字はスマホでは消す */
+  .brand-subtitle,
+  .site-subtitle,
+  header .brand small,
+  header .brand .subtitle {
+    display: none;
+  }
+
+  /* 右側メニューが潰れないように */
+  nav,
+  .nav {
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: flex-end;
+  }
+
+  nav a,
+  .nav a {
+    font-size: 14px;
+    padding: 10px 12px;
+  }
+}
+/* =========================
+   お知らせ 見出し位置修正（PC・スマホ共通）
+========================= */
+
+.notice-section {
+  max-width: 1100px;   /* 他カードと同じ幅 */
+  margin: 0 auto;      /* 中央寄せ */
+  padding: 0 20px;     /* 左右余白 */
+}
+
+.notice-title {
+  margin-left: 0;
+  text-align: left;
+}
