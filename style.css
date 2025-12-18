@@ -269,3 +269,15 @@ a:hover{
     font-size: 24px;
   }
 }
+/* ===== 大会結果ボタン ===== */
+.btn.result {
+  background: linear-gradient(135deg, #3b82f6, #2563eb);
+  color: #fff;
+  border: none;
+}
+
+.btn.result:hover {
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  transform: translateY(-1px);
+  box-shadow: 0 8px 20px rgba(37, 99, 235, 0.35);
+}
