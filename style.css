@@ -276,3 +276,25 @@ a:hover{
   border: none !important;
   box-shadow: 0 6px 18px rgba(225,48,108,.35) !important;
 }
+/* =========================
+   PC：ヒーローのボタンを大きく＆中央寄せ
+========================= */
+@media (min-width: 900px) {
+  /* ボタン群を中央寄せ */
+  .hero-main .actions {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-top: 22px;
+  }
+
+  /* ボタンを大きく */
+  .hero-main .btn {
+    padding: 16px 26px;
+    font-size: 16px;
+    border-radius: 14px;
+    min-width: 180px;
+    text-align: center;
+  }
+}
