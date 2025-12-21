@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>お知らせ | 宮古バドミントン協会</title>
+  <meta name="description" content="宮古バドミントン協会のお知らせ一覧" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <header class="header">
+    <div class="container">
+      <nav class="nav">
+        <a class="brand" href="index.html">
+          <div class="brand-mark" aria-hidden="true"></div>
+          <div class="brand-title">
+            <strong>宮古バドミントン協会</strong>
+            <span>公式サイト</span>
+          </div>
+        </a>
+
+        <div class="menu">
+          <a href="index.html">トップ</a>
+          <a class="active" href="notices.html">お知らせ</a>
+          <a href="tournaments.html">大会情報</a>
+          <a href="results.html">結果</a>
+          <a href="about.html">協会について</a>
+          <a href="contact.html">問い合わせ</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="section">
+      <div class="container">
+        <h1>お知らせ</h1>
+        <p class="small">協会からの更新情報を掲載します。</p>
+
+        <div class="card box" style="margin-top:14px;">
+          <div class="list" id="noticesPageList">
+            <div class="item">読み込み中...</div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="row">
+        <div>© <span id="y"></span> 宮古バドミントン協会</div>
+        <div>更新担当：竹中悠（連絡先は問い合わせページへ）</div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("y").textContent = new Date().getFullYear();
+
+    // あなたの WebアプリURL（/execまで）
+    const API_BASE = "https://script.googleusercontent.com/macros/s/AKfycbzSk_APUGIBsY1GXxy7OHhlMmsbgguy2xrOTi3qrExbFsap8wOM6s_b-vQnyvPvGXW0/exec";
+
+    function esc(s){
+      return String(s ?? "")
+        .replaceAll("&","&amp;")
+        .replaceAll("<","&lt;")
+        .replaceAll(">","&gt;")
+        .replaceAll('"',"&quot;")
+        .replaceAll("'","&#39;");
+    }
+
+    function formatDate(d){
+      if(!d) return "";
+      const dt = new Date(d);
+      if (isNaN(dt)) return String(d);
+      return dt.toISOString().slice(0,10);
+    }
+
+    function tagClass(tag){
+      if(tag === "募集中") return "open";
+      if(tag === "終了") return "closed";
+      return "";
+    }
+
+    function jsonp(type){
+      return new Promise((resolve, reject) => {
+        const cb = "cb_" + Math.random().toString(16).slice(2);
+        window[cb] = (data) => {
+          delete window[cb];
+          script.remove();
+          resolve(data);
+        };
+        const script = document.createElement("script");
+        script.src = `${API_BASE}?type=${encodeURIComponent(type)}&callback=${cb}`;
+        script.onerror = () => reject(new Error("JSONP load failed"));
+        document.body.appendChild(script);
+      });
+    }
+
+    async function fetchItems(type){
+      const data = await jsonp(type);
+      if(!data.ok) throw new Error(data.error || "API error");
+      return data.items || [];
+    }
+
+    async function loadAllNotices(){
+      const el = document.getElementById("noticesPageList");
+      try{
+        const items = await fetchItems("notices");
+        if(items.length === 0){
+          el.innerHTML = `<div class="item">お知らせはありません</div>`;
+          return;
+        }
+
+        el.innerHTML = items.map(n => `
+          <div class="item">
+            <div class="meta">
+              <span class="tag ${tagClass(String(n.tag||""))}">${esc(n.tag || "更新")}</span>
+              <span>${esc(formatDate(n.date))}</span>
+            </div>
+            <strong>${esc(n.title || "")}</strong>
+            ${n.note ? `<div class="small" style="margin-top:6px;opacity:.9;">${esc(n.note)}</div>` : ""}
+            ${n.url ? `<a href="${esc(n.url)}">詳細を見る →</a>` : ""}
+          </div>
+        `).join("");
+      }catch(e){
+        console.error(e);
+        el.innerHTML = `<div class="item">お知らせの読み込みに失敗しました</div>`;
+      }
+    }
+
+    loadAllNotices();
+  </script>
+</body>
+</html>
