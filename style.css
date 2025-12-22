@@ -319,3 +319,21 @@ img {
     justify-content: center;
   }
 }
+/* iPhoneのノッチ/ステータスバー分を確保 */
+:root{
+  --header-h: 72px; /* あなたのヘッダーの実高さに合わせてOK（後で微調整） */
+}
+
+.header{
+  /* fixed を使ってるならそのままでOK。stickyでもOK */
+  padding-top: env(safe-area-inset-top);
+}
+
+/* ヘッダーが fixed の場合：本文が被らないように上に余白を作る */
+body{
+  padding-top: calc(var(--header-h) + env(safe-area-inset-top));
+}
+
+/* もし header が position: sticky の場合は body の padding が要らないので以下をコメントアウト
+body{ padding-top: 0; }
+*/
