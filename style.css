@@ -298,3 +298,117 @@ a:hover{
     text-align: center;
   }
 }
+/* ===== ヒーロー内 SNSリンク ===== */
+.hero-sns {
+  display: flex;
+  gap: 10px;
+  margin-top: 18px;
+  justify-content: flex-end; /* 右寄せ */
+  flex-wrap: wrap;
+}
+
+.sns-btn {
+  padding: 10px 14px;
+  border-radius: 14px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #fff;
+  text-decoration: none;
+  backdrop-filter: blur(6px);
+  transition: transform .15s ease, opacity .15s ease;
+}
+
+.sns-btn:hover {
+  transform: translateY(-2px);
+  opacity: 0.9;
+}
+
+/* 各SNSカラー */
+.sns-btn.line {
+  background: linear-gradient(135deg, #06C755, #1de782);
+}
+
+.sns-btn.instagram {
+  background: linear-gradient(
+    135deg,
+    #f58529,
+    #dd2a7b,
+    #8134af,
+    #515bd4
+  );
+}
+
+.sns-btn.youtube {
+  background: linear-gradient(135deg, #ff0000, #cc0000);
+}
+
+/* ===== PCでは中央寄せに ===== */
+@media (min-width: 768px) {
+  .hero-sns {
+    justify-content: center;
+  }
+}
+/* ===== SNS ICONS ===== */
+.hero-sns {
+  display: flex;
+  gap: 14px;
+  margin-top: 24px;
+  flex-wrap: wrap;
+}
+
+.sns-icon {
+  position: relative;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  font-weight: 700;
+  color: #fff;
+  font-size: 14px;
+  box-shadow: 0 8px 20px rgba(0,0,0,.25);
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+
+.sns-icon:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 28px rgba(0,0,0,.35);
+}
+
+/* LINE */
+.sns-icon.line {
+  background: linear-gradient(135deg, #00c300, #00e676);
+}
+
+/* Instagram */
+.sns-icon.instagram {
+  background: linear-gradient(
+    135deg,
+    #f09433,
+    #e6683c,
+    #dc2743,
+    #cc2366,
+    #bc1888
+  );
+}
+
+/* YouTube */
+.sns-icon.youtube {
+  background: linear-gradient(135deg, #ff0000, #cc0000);
+}
+
+/* ===== LINE 最速バッジ ===== */
+.fast-badge {
+  position: absolute;
+  top: -6px;
+  right: -8px;
+  background: #ffd600;
+  color: #333;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 3px 6px;
+  border-radius: 999px;
+  box-shadow: 0 4px 10px rgba(0,0,0,.3);
+}
