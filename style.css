@@ -439,31 +439,25 @@ a:hover{
    TOP メインビジュアル
 ========================= */
 
-.top-visual{
+.top-visual {
   position: relative;
   width: 100%;
-  height: min(70vh, 520px); /* PC */
+  height: 420px; /* PC */
   overflow: hidden;
-  background: #000;
 }
 
-.top-visual img{
+@media (max-width: 768px) {
+  .top-visual {
+    height: 260px; /* スマホ */
+  }
+}
+
+.top-visual img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  display: block;
-}
-
-/* 画像の上にうっすら暗幕（文字を読みやすく） */
-.top-visual::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  background: linear-gradient(
-    to bottom,
-    rgba(0,0,0,0.25),
-    rgba(0,0,0,0.45)
-  );
+  object-position: center bottom;
+  filter: brightness(1.15) contrast(1.05) saturate(1.1);
 }
 
 /* 文字エリア */
@@ -490,13 +484,10 @@ a:hover{
   opacity: 0.9;
 }
 
-/* スマホ調整 */
-@media (max-width: 768px){
-  .top-visual{
-    height: 52vh;
-  }
-
-  .top-visual-text{
-    bottom: 14%;
+/* スマホ表示 */
+@media (max-width: 768px) {
+  .top-visual img {
+    object-fit: contain;   /* ← 横が切れなくなる */
+    background: #0b1c2d;   /* 余白が出た時の色（濃紺） */
   }
 }
