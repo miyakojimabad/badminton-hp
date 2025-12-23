@@ -515,3 +515,38 @@ img {
   .news-grid{ grid-template-columns: 1fr; }
   .sns{ min-width: 100px; flex: 1; }
 }
+/* === NEWSがスマホで見えない対策（強制的に読みやすく） === */
+.news-panel{
+  background: rgba(255,255,255,0.10) !important; /* 少し明るく */
+  border: 1px solid rgba(255,255,255,0.22) !important;
+}
+
+.news-head h2{
+  color: #ffffff !important;
+}
+
+.news-more{
+  color: rgba(255,255,255,0.85) !important;
+}
+
+/* noticesList の中身（カード）を必ず白文字で出す */
+.news-card{
+  background: rgba(0,0,0,0.35) !important;
+  border: 1px solid rgba(255,255,255,0.18) !important;
+  color: rgba(255,255,255,0.88) !important;
+}
+
+.news-card strong{
+  color: #ffffff !important;
+}
+
+/* 日付・タグ行 */
+.news-card .meta{
+  color: rgba(255,255,255,0.75) !important;
+}
+
+/* リンク */
+.news-card a{
+  color: #7dd3fc !important;
+  font-weight: 700;
+}
