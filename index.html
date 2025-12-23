@@ -39,54 +39,48 @@
 
 <main>
 
-<!-- ===== ヒーロー ===== -->
-<section class="hero">
-  <div class="container hero-grid">
+    <!-- ===== ヒーロー ===== -->
+    <section class="hero hero--dank">
+      <div class="hero-bg" aria-hidden="true"></div>
+      <div class="hero-overlay" aria-hidden="true"></div>
 
-    <!-- メインカード -->
-    <div class="card hero-main hero-bg">
-      <span class="badge">📣 最新情報は「お知らせ」を確認</span>
+      <div class="container hero-stack">
+        <!-- 上：メイン -->
+        <div class="hero-panel">
+          <span class="badge">📣 最新情報は「お知らせ」を確認</span>
+          <h1>離島のバドミントン、もっと楽しく。</h1>
+          <p>大会要項・申込フォーム・結果PDF・練習会情報などを掲載します。</p>
 
-      <h1>離島のバドミントン、もっと楽しく。</h1>
+          <div class="actions actions--center">
+            <a class="btn primary" href="tournaments.html">大会情報を見る</a>
+            <a class="btn result" href="results.html">大会結果を見る</a>
+            <a class="btn" href="contact.html">問い合わせ</a>
+          </div>
 
-      <p>
-        大会要項・申込フォーム・結果PDF・練習会情報などを掲載します。
-      </p>
+          <!-- SNS（既に作ってるならここに） -->
+          <div class="sns-row">
+            <!-- 例：リンクはあなたのURLに変更 -->
+            <a class="sns sns-line" href="https://lin.ee/QNH3ade" target="_blank" rel="noopener">
+              <span class="sns-badge">最速</span> LINE
+            </a>
+            <a class="sns sns-ig" href="https://www.instagram.com/miyakojima_badminton?igsh=cG1rNXp3MWswajR3&utm_source=qr" target="_blank" rel="noopener">Instagram</a>
+            <a class="sns sns-yt" href="https://youtube.com/channel/UCZ6a3JuouQ-G8OIWV3tp9wg?si=On5kt_mn6zGgloG3" target="_blank" rel="noopener">YouTube</a>
+          </div>
+        </div>
 
-      <div class="actions">
-        <a class="btn primary" href="tournaments.html">大会情報を見る</a>
-        <a class="btn danger" href="results.html">大会結果を見る</a>
-        <a class="btn ghost" href="contact.html">問い合わせ</a>
+        <!-- 下：NEWS（お知らせを5件まで） -->
+        <div class="news-panel">
+          <div class="news-head">
+            <h2>NEWS</h2>
+            <a class="news-more" href="notice.html">MORE →</a>
+          </div>
+          <div class="news-grid" id="noticesList">
+            <div class="news-card">読み込み中...</div>
+          </div>
+        </div>
       </div>
-
-      <!-- SNSリンク -->
-      <div class="hero-sns">
-        <a href="https://lin.ee/QNH3ade" target="_blank" class="sns-icon line">
-          <span>LINE</span>
-          <em class="fast-badge">最速</em>
-        </a>
-
-        <a href="https://www.instagram.com/miyakojima_badminton?igsh=cG1rNXp3MWswajR3&utm_source=qr" target="_blank" class="sns-icon instagram">
-          <span>Instagram</span>
-        </a>
-
-        <a href="https://youtube.com/channel/UCZ6a3JuouQ-G8OIWV3tp9wg?si=On5kt_mn6zGgloG3" target="_blank" class="sns-icon youtube">
-          <span>YouTube</span>
-        </a>
-      </div>
-    </div>
-
-    <!-- お知らせ -->
-    <aside class="card hero-side">
-      <h2>お知らせ</h2>
-      <div class="list" id="noticesList">
-        <div class="item">読み込み中...</div>
-      </div>
-    </aside>
-
-  </div>
-</section>
-
+    </section>
+  
 <!-- ===== 募集中の大会 ===== -->
 <section class="section">
   <div class="container">
