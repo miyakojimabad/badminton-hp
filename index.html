@@ -2,210 +2,276 @@
 <html lang="ja">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <title>宮古バドミントン協会</title>
-
-  <meta name="description" content="宮古バドミントン協会の公式サイト。大会情報、申込、結果、お知らせを掲載します。" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="google-site-verification" content="hDJKNpob4sjI5wOyUoYMoMDHbV0oaLXUoUS2Ua_p1X8" />
-
+  <title>宮古バドミントン協会</title>
+  <meta name="description" content="宮古バドミントン協会の公式サイト。大会情報、申込、結果、お知らせを掲載します。" />
   <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
+  <header class="header">
+    <div class="container">
+      <nav class="nav">
+        <a class="brand" href="index.html">
+          <div class="brand-mark" aria-hidden="true"></div>
+          <div class="brand-title">
+            <strong>宮古バドミントン協会</strong>
+            <span>公式サイト</span>
+          </div>
+        </a>
 
-<!-- ===== ヘッダー ===== -->
-<header class="header">
-  <div class="container">
-    <nav class="nav">
-      <a class="brand" href="index.html">
-        <div class="brand-mark"></div>
-        <div class="brand-title">
-          <strong>宮古バドミントン協会</strong>
-          <span>公式サイト</span>
+        <div class="menu">
+          <a class="active" href="index.html">トップ</a>
+          <a href="notices.html">お知らせ</a>
+          <a href="tournaments.html">大会情報</a>
+          <a href="results.html">結果</a>
+          <a href="about.html">協会について</a>
+          <a href="contact.html">問い合わせ</a>
         </div>
-      </a>
+      </nav>
+    </div>
+  </header>
 
-      <div class="menu">
-        <a class="active" href="index.html">トップ</a>
-        <a href="notices.html">お知らせ</a>
-        <a href="tournaments.html">大会情報</a>
-        <a href="results.html">結果</a>
-        <a href="about.html">協会について</a>
-        <a href="contact.html">問い合わせ</a>
-      </div>
-    </nav>
-  </div>
-</header>
-
-<main>
-
+  <main>
     <!-- ===== ヒーロー ===== -->
-    <section class="hero hero--dank">
-      <div class="hero-bg" aria-hidden="true"></div>
-      <div class="hero-overlay" aria-hidden="true"></div>
+    <section class="hero">
+      <div class="container hero-grid">
 
-      <div class="container hero-stack">
-        <!-- 上：メイン -->
-        <div class="hero-panel">
+        <!-- 左：メインカード -->
+        <div class="card hero-main hero-bg">
           <span class="badge">📣 最新情報は「お知らせ」を確認</span>
+
           <h1>離島のバドミントン、もっと楽しく。</h1>
-          <p>大会要項・申込フォーム・結果PDF・練習会情報などを掲載します。</p>
+          <p class="lead">
+            大会要項・申込フォーム・結果PDF・練習会情報などを掲載します。
+          </p>
 
-          <div class="actions actions--center">
+          <div class="actions">
             <a class="btn primary" href="tournaments.html">大会情報を見る</a>
-            <a class="btn result" href="results.html">大会結果を見る</a>
-            <a class="btn" href="contact.html">問い合わせ</a>
+            <a class="btn accent" href="results.html">大会結果を見る</a>
+            <a class="btn ghost" href="contact.html">問い合わせ</a>
           </div>
 
-          <!-- SNS（既に作ってるならここに） -->
+          <!-- SNS（アイコン風） -->
           <div class="sns-row">
-            <!-- 例：リンクはあなたのURLに変更 -->
-            <a class="sns sns-line" href="https://lin.ee/QNH3ade" target="_blank" rel="noopener">
-              <span class="sns-badge">最速</span> LINE
+            <a class="sns-card line" href="https://lin.ee/QNH3ade" target="_blank" rel="noopener">
+              <span class="sns-badge">最速</span>
+              <span class="sns-name">LINE</span>
             </a>
-            <a class="sns sns-ig" href="https://www.instagram.com/miyakojima_badminton?igsh=cG1rNXp3MWswajR3&utm_source=qr" target="_blank" rel="noopener">Instagram</a>
-            <a class="sns sns-yt" href="https://youtube.com/channel/UCZ6a3JuouQ-G8OIWV3tp9wg?si=On5kt_mn6zGgloG3" target="_blank" rel="noopener">YouTube</a>
+
+            <a class="sns-card ig" href="https://www.instagram.com/miyakojima_badminton?igsh=cG1rNXp3MWswajR3&utm_source=qr" target="_blank" rel="noopener">
+              <span class="sns-name">Instagram</span>
+            </a>
+
+            <a class="sns-card yt" href="https://youtube.com/channel/UCZ6a3JuouQ-G8OIWV3tp9wg?si=On5kt_mn6zGgloG3" target="_blank" rel="noopener">
+              <span class="sns-name">YouTube</span>
+            </a>
           </div>
+
+          <p class="hint">※</p>
         </div>
 
-        <!-- 下：NEWS（お知らせを5件まで） -->
-        <div class="news-panel">
+        <!-- 右：NEWS -->
+        <aside class="card hero-side">
           <div class="news-head">
             <h2>NEWS</h2>
-            <a class="news-more" href="notice.html">MORE →</a>
+            <a class="news-more" href="notices.html">MORE →</a>
           </div>
-          <div class="news-grid" id="noticesList">
-            <div class="news-card">読み込み中...</div>
+
+          <div class="list" id="noticesList">
+            <div class="item">読み込み中...</div>
           </div>
+        </aside>
+
+      </div>
+    </section>
+
+    <!-- ===== 募集中の大会（トップ用） ===== -->
+    <section class="section">
+      <div class="container">
+        <div class="section-head">
+          <h2>募集中の大会</h2>
+          <a class="section-more" href="tournaments.html">大会情報一覧 →</a>
+        </div>
+
+        <div class="grid" id="topTournaments">
+          <div class="card box">読み込み中...</div>
         </div>
       </div>
     </section>
-  
-<!-- ===== 募集中の大会 ===== -->
-<section class="section">
-  <div class="container">
-    <h2>募集中の大会</h2>
 
-    <div class="grid" id="topTournaments">
-      <div class="card box">読み込み中...</div>
+    <!-- ===== よく使うリンク ===== -->
+    <section class="section light">
+      <div class="container">
+        <div class="section-head">
+          <h2>よく使うリンク</h2>
+        </div>
+
+        <div class="grid" id="linksGrid">
+          <div class="card box">読み込み中...</div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="row">
+        <div>© <span id="y"></span> 宮古バドミントン協会</div>
+        <div>更新担当：竹中悠（連絡先は問い合わせページへ）</div>
+      </div>
     </div>
+  </footer>
 
-    <p class="small">
-      <a href="tournaments.html">大会情報一覧を見る →</a>
-    </p>
-  </div>
-</section>
+  <script>
+    document.getElementById("y").textContent = new Date().getFullYear();
+  </script>
 
-<!-- ===== よく使うリンク ===== -->
-<section class="section">
-  <div class="container">
-    <h2>よく使うリンク</h2>
+  <!-- ===== スプレッドシート連携（JSONP版） ===== -->
+  <script>
+    // ★あなたのApps Script WebアプリURL（/execまで）に置き換え
+    const API_BASE = "https://script.google.com/macros/s/AKfycbzSk_APUGIBsY1GXxy7OHhlMmsbgguy2xrOTi3qrExbFsap8wOM6s_b-vQnyvPvGXW0/exec";
 
-    <div class="grid" id="linksGrid">
-      <div class="card box">読み込み中...</div>
-    </div>
-  </div>
-</section>
+    function esc(s){
+      return String(s ?? "")
+        .replaceAll("&","&amp;")
+        .replaceAll("<","&lt;")
+        .replaceAll(">","&gt;")
+        .replaceAll('"',"&quot;")
+        .replaceAll("'","&#39;");
+    }
 
-</main>
+    function formatDate(d){
+      if(!d) return "";
+      const dt = new Date(d);
+      if (isNaN(dt)) return String(d);
+      return dt.toISOString().slice(0,10);
+    }
 
-<!-- ===== フッター ===== -->
-<footer class="footer">
-  <div class="container">
-    <div class="row">
-      <div>© <span id="y"></span> 宮古バドミントン協会</div>
-      <div>更新担当：竹中 悠（連絡先は問い合わせページへ）</div>
-    </div>
-  </div>
-</footer>
+    function tagClass(tag){
+      if(tag === "募集中") return "open";
+      if(tag === "終了") return "closed";
+      return "";
+    }
 
-<script>
-  document.getElementById("y").textContent = new Date().getFullYear();
-</script>
+    // JSONP（CORS回避）
+    function jsonp(type){
+      return new Promise((resolve, reject) => {
+        const cb = "cb_" + Math.random().toString(16).slice(2);
+        window[cb] = (data) => {
+          delete window[cb];
+          script.remove();
+          resolve(data);
+        };
+        const script = document.createElement("script");
+        script.src = `${API_BASE}?type=${encodeURIComponent(type)}&callback=${cb}`;
+        script.onerror = () => reject(new Error("JSONP load failed"));
+        document.body.appendChild(script);
+      });
+    }
 
-<!-- ===== スプレッドシート連携 ===== -->
-<script>
-const API_BASE = "https://script.google.com/macros/s/AKfycbzSk_APUGIBsY1GXxy7OHhlMmsbgguy2xrOTi3qrExbFsap8wOM6s_b-vQnyvPvGXW0/exec";
+    async function fetchItems(type){
+      const data = await jsonp(type);
+      if(!data.ok) throw new Error(data.error || "API error");
+      return data.items || [];
+    }
 
-function esc(s){
-  return String(s ?? "")
-    .replaceAll("&","&amp;")
-    .replaceAll("<","&lt;")
-    .replaceAll(">","&gt;")
-    .replaceAll('"',"&quot;")
-    .replaceAll("'","&#39;");
-}
+    // ===== NEWS（最大5件） =====
+    async function loadNotices(){
+      const el = document.getElementById("noticesList");
+      if(!el) return;
 
-function formatDate(d){
-  if(!d) return "";
-  const dt = new Date(d);
-  return isNaN(dt) ? d : dt.toISOString().slice(0,10);
-}
+      try{
+        const items = await fetchItems("notices");
 
-function jsonp(type){
-  return new Promise((resolve,reject)=>{
-    const cb = "cb_" + Math.random().toString(36).slice(2);
-    window[cb] = data => {
-      delete window[cb];
-      script.remove();
-      resolve(data);
-    };
-    const script = document.createElement("script");
-    script.src = `${API_BASE}?type=${type}&callback=${cb}`;
-    script.onerror = reject;
-    document.body.appendChild(script);
-  });
-}
+        if(items.length === 0){
+          el.innerHTML = `<div class="item">お知らせはありません</div>`;
+          return;
+        }
 
-/* ===== お知らせ ===== */
-async function loadNotices(){
-  const el = document.getElementById("noticesList");
-  const data = await jsonp("notices");
-  el.innerHTML = data.items.slice(0,5).map(n=>`
-    <div class="item">
-      <span class="tag">${esc(n.tag||"更新")}</span>
-      <span class="date">${esc(formatDate(n.date))}</span>
-      <strong>${esc(n.title)}</strong>
-      ${n.url ? `<a href="${esc(n.url)}">詳細を見る →</a>` : ""}
-    </div>
-  `).join("");
-}
+        el.innerHTML = items.slice(0,5).map(n => `
+          <div class="news-card">
+            <div class="meta">
+              <span class="tag ${tagClass(String(n.tag||""))}">${esc(n.tag || "更新")}</span>
+              <span class="date">${esc(formatDate(n.date))}</span>
+            </div>
+            <strong>${esc(n.title || "")}</strong>
+            ${n.url ? `<a href="${esc(n.url)}" target="_blank" rel="noopener">詳細を見る →</a>` : ""}
+          </div>
+        `).join("");
+      }catch(e){
+        console.error(e);
+        el.innerHTML = `<div class="item error">お知らせの読み込みに失敗しました</div>`;
+      }
+    }
 
-/* ===== 募集中の大会 ===== */
-async function loadTournaments(){
-  const el = document.getElementById("topTournaments");
-  const data = await jsonp("tournaments");
-  const open = data.items.filter(t=>t.status==="募集中").slice(0,3);
+    // ===== 募集中の大会（3件まで） =====
+    async function loadTopTournaments(){
+      const el = document.getElementById("topTournaments");
+      if(!el) return;
 
-  el.innerHTML = open.length ? open.map(t=>`
-    <div class="card box">
-      <h3>${esc(t.name)}</h3>
-      <p class="small">
-        開催日：${formatDate(t.date)}<br>
-        会場：${esc(t.venue||"未定")}
-      </p>
-      <a href="tournaments.html">詳細・申込を見る →</a>
-    </div>
-  `).join("") : `<div class="card box">現在募集中の大会はありません</div>`;
-}
+      try{
+        const items = await fetchItems("tournaments");
+        const open = items.filter(t => String(t.status || "") === "募集中").slice(0,3);
 
-/* ===== リンク ===== */
-async function loadLinks(){
-  const el = document.getElementById("linksGrid");
-  const data = await jsonp("links");
-  el.innerHTML = data.items.map(l=>`
-    <div class="card box">
-      <h3>${esc(l.title)}</h3>
-      <p>${esc(l.description||"")}</p>
-      <a href="${esc(l.url)}">開く →</a>
-    </div>
-  `).join("");
-}
+        if(open.length === 0){
+          el.innerHTML = `<div class="card box">現在、募集中の大会はありません</div>`;
+          return;
+        }
 
-loadNotices();
-loadTournaments();
-loadLinks();
-</script>
+        el.innerHTML = open.map(t => `
+          <div class="card box">
+            <div class="meta">
+              <span class="tag open">募集中</span>
+              <span class="date">${esc(formatDate(t.date))}</span>
+            </div>
+            <h3>${esc(t.name || "")}</h3>
+            <p class="small">
+              会場：${esc(t.venue || "未定")}<br>
+              締切：${esc(formatDate(t.deadline)) || "-"}
+            </p>
+            <div class="row-actions">
+              ${t.youkou_pdf ? `<a class="mini-btn" href="${esc(t.youkou_pdf)}" target="_blank" rel="noopener">要項PDF</a>` : ""}
+              ${t.form_url ? `<a class="mini-btn primary" href="${esc(t.form_url)}" target="_blank" rel="noopener">申込</a>` : ""}
+            </div>
+          </div>
+        `).join("");
+      }catch(e){
+        console.error(e);
+        el.innerHTML = `<div class="card box">大会情報の読み込みに失敗しました</div>`;
+      }
+    }
+
+    // ===== よく使うリンク =====
+    async function loadLinks(){
+      const el = document.getElementById("linksGrid");
+      if(!el) return;
+
+      try{
+        const items = await fetchItems("links");
+        if(items.length === 0){
+          el.innerHTML = `<div class="card box">リンクはありません</div>`;
+          return;
+        }
+
+        el.innerHTML = items.map(l => `
+          <div class="card box">
+            <h3>${esc(l.title || "")}</h3>
+            <p>${esc(l.description || "")}</p>
+            ${l.url ? `<p style="margin-top:10px;"><a href="${esc(l.url)}" target="_blank" rel="noopener">開く →</a></p>` : ""}
+          </div>
+        `).join("");
+      }catch(e){
+        console.error(e);
+        el.innerHTML = `<div class="card box">リンクの読み込みに失敗しました</div>`;
+      }
+    }
+
+    loadNotices();
+    loadTopTournaments();
+    loadLinks();
+  </script>
 
 </body>
 </html>
