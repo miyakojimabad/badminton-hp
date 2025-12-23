@@ -321,13 +321,29 @@ img {
 }
 /* iPhoneのノッチ/ステータスバー分を確保 */
 :root{
-  --header-h: 72px;
+  --header-h: 88px; /* ←スマホ用に少し大きめ */
 }
 
 .header{
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  width: 100%;
+
+  /* 黒背景は header に持たせる */
+  background: rgba(6, 16, 28, 0.92);
+  backdrop-filter: blur(10px);
+
+  /* safe-area込みで高さ確保 */
   padding-top: env(safe-area-inset-top);
 }
 
-body{
-  padding-top: calc(var(--header-h) + env(safe-area-inset-top));
+.header .container{
+  background: transparent; /* ←中が黒になってる場合の保険 */
+}
+
+.nav{
+  min-height: var(--header-h);
+  display: flex;
+  align-items: center;
 }
