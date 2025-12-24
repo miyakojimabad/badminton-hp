@@ -271,7 +271,7 @@ body{
   padding: 32px 24px;
 }
 .service-card .number {
-  font-size: 1.4rem;           /* ← 少し大きく */
+  font-size: 2.4rem;           /* ← 少し大きく */
   font-weight: 700;
   width: 44px;
   height: 44px;
@@ -293,13 +293,16 @@ body{
   font-size: 12px;
   letter-spacing: .08em;
 }
-.service-card h3{
-  margin: 12px 0 6px;
-  font-size: 18px;
+.service-card h3 {
+  font-size: 1.05rem;
+  font-weight: 600;
+  margin-bottom: 6px;
 }
-.service-card p{
-  margin:0;
-  color: var(--muted);
+
+.service-card p {
+  font-size: 0.9rem;
+  color: #6b7280; /* 薄めグレー */
+  line-height: 1.6;
 }
 
 /* ===== Panels / lists / grid ===== */
