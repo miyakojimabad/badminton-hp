@@ -34,12 +34,15 @@
 
   <main>
     <!-- ===== HERO（大きい写真＋大見出し：ringfitっぽく） ===== -->
-    <section class="hero">
-      <div class="hero-media">
-        <picture>
-          <source media="(max-width: 768px)" srcset="images/hero-mobile.jpg">
-          <img src="images/top-visual.jpg" alt="宮古バドミントン協会" decoding="async">
-        </picture>
+    <!-- ===== TOP 画像（PC/スマホ出し分け） ===== -->
+    <section class="top-hero" aria-label="トップ画像">
+      <picture>
+        <!-- スマホ用（縦長/切れない） -->
+        <source media="(max-width: 768px)" srcset="images/hero-sp.jpg">
+        <!-- PC用 -->
+        <img class="top-hero__img" src="images/hero-pc.jpg" alt="宮古バドミントン協会">
+      </picture>
+    </section>
       </div>
 
       <div class="container hero-inner">
