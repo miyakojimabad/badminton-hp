@@ -31,13 +31,16 @@ body{
 }
 
 /* ===== Header ===== */
-.header{
+.header {
   position: sticky;
-  top:0;
-  z-index:50;
-  background: rgba(255,255,255,.92);
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid var(--line);
+  top: 0;
+  z-index: 1000;
+
+  background: rgba(255, 255, 255, 0.75); /* ← 透かし */
+  backdrop-filter: blur(10px);           /* ← すりガラス */
+  -webkit-backdrop-filter: blur(10px);
+
+  border-bottom: 1px solid rgba(0,0,0,0.08);
 }
 .nav{
   display:flex;
@@ -259,13 +262,26 @@ body{
   grid-template-columns: repeat(3, 1fr);
   gap: 14px;
 }
-.service-card{
-  position: relative;
-  border-radius: var(--radius);
-  border: 1px solid var(--line);
-  background: #fff;
-  box-shadow: var(--shadow);
-  padding: 18px;
+.service-card {
+  text-align: center;          /* テキスト中央 */
+  display: flex;
+  flex-direction: column;
+  align-items: center;         /* 横方向中央 */
+  justify-content: center;     /* 縦方向中央 */
+  padding: 32px 24px;
+}
+.service-card .number {
+  font-size: 1.4rem;           /* ← 少し大きく */
+  font-weight: 700;
+  width: 44px;
+  height: 44px;
+  line-height: 44px;
+
+  border-radius: 50%;
+  background: #111827;         /* 黒 */
+  color: #fff;
+
+  margin-bottom: 12px;
 }
 .service-no{
   display:inline-flex;
