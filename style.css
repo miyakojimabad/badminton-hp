@@ -457,3 +457,104 @@ html, body {
 .service-card .number{
   transition: transform .18s ease, filter .18s ease;
 }
+/* =========================
+   一覧カードを “見えやすく” する共通強化
+   （大会情報 / 結果）
+========================= */
+
+:root{
+  --card-bg: #ffffff;
+  --card-border: rgba(15, 23, 42, .12); /* 少し濃い枠 */
+  --card-shadow: 0 8px 24px rgba(15, 23, 42, .10);
+  --muted: rgba(15, 23, 42, .65);
+}
+
+main{
+  background: #f6f7fb; /* 白じゃなく“薄いグレー”にして区切りが見える */
+}
+
+/* 一覧の各カード（あなたの既存 .card .box .item どれでも効くように広めに指定） */
+.card,
+.card.box,
+.list .item,
+.result-item,
+.tournament-card{
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  box-shadow: var(--card-shadow);
+  border-radius: 18px;
+}
+
+/* カード間の余白を増やす（区切りが明確になる） */
+.grid,
+.list{
+  gap: 14px;
+}
+.list .item,
+.card.box,
+.result-item,
+.tournament-card{
+  padding: 16px 16px;
+  margin-bottom: 14px;
+}
+
+/* タイトルを太く＆読みやすく */
+.list .item strong,
+.card.box h3,
+.result-item h3,
+.tournament-card h3{
+  font-weight: 800;
+  letter-spacing: .02em;
+  line-height: 1.35;
+}
+
+/* サブ情報（会場、締切など）を薄く */
+.small,
+.meta,
+.card.box p,
+.result-item p,
+.tournament-card p{
+  color: var(--muted);
+}
+
+/* バッジ（募集/予定/終了）を見やすく */
+.tag{
+  border: 1px solid rgba(15,23,42,.10);
+  background: rgba(15,23,42,.04);
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-weight: 700;
+}
+.tag.open{ background: rgba(16,185,129,.14); border-color: rgba(16,185,129,.25); }
+.tag.closed{ background: rgba(239,68,68,.12); border-color: rgba(239,68,68,.22); }
+
+/* ボタンも“カード内の要素”として見やすく */
+.btn,
+a.btn,
+.card a,
+.list a{
+  font-weight: 800;
+}
+
+/* 要項PDF/申込ボタンが枠だけで薄い場合に強化 */
+.btn,
+a.btn{
+  border: 1px solid rgba(15,23,42,.18);
+}
+.btn.primary,
+a.btn.primary{
+  border: none;
+  box-shadow: 0 10px 24px rgba(16,185,129,.22);
+}
+
+/* タップしやすい高さ（スマホ） */
+@media (max-width: 768px){
+  .btn, a.btn{
+    min-height: 52px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 16px;
+    border-radius: 16px;
+  }
+}
