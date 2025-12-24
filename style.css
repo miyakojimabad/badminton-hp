@@ -378,3 +378,36 @@ body{
   .menu a{ padding: 8px 10px; font-size: 13px; }
   .hero-media{ height: 280px; }
 }
+/* ===== FORCE LIGHT THEME (最下部に追記) ===== */
+html, body {
+  background: #ffffff !important;
+  color: #0b0f19 !important;
+}
+
+.header{
+  background: rgba(255,255,255,.92) !important;
+  border-bottom: 1px solid #e5e7eb !important;
+}
+
+.hero{
+  background: #ffffff !important;
+}
+
+.block{
+  background: #ffffff !important;
+}
+
+.panel, .item, .mv-item, .service-card{
+  background: #ffffff !important;
+  border: 1px solid #e5e7eb !important;
+  color: #0b0f19 !important;
+}
+
+.sub, .muted, .meta{
+  color: #4b5563 !important;
+}
+
+/* もしヒーロー画像が暗く見えるなら */
+.hero-media img{
+  filter: none !important;
+}
