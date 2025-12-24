@@ -430,3 +430,29 @@ html, body {
 .hero-media img{
   filter: none !important;
 }
+/* ふわっと浮く：Serviceカード */
+.service-card{
+  transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+  will-change: transform;
+  border: 1px solid rgba(0,0,0,.08);
+  box-shadow: 0 6px 18px rgba(0,0,0,.06);
+}
+
+/* PCのみ hover */
+@media (hover:hover) and (pointer:fine){
+  .service-card:hover{
+    transform: translateY(-8px);
+    box-shadow: 0 18px 40px rgba(0,0,0,.12);
+    border-color: rgba(0,0,0,.14);
+  }
+
+  /* 数字も少しだけ強調 */
+  .service-card:hover .number{
+    transform: scale(1.06);
+  }
+}
+
+/* numberも滑らかに */
+.service-card .number{
+  transition: transform .18s ease, filter .18s ease;
+}
