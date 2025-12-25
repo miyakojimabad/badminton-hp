@@ -558,3 +558,31 @@ a.btn.primary{
     border-radius: 16px;
   }
 }
+.hero-title {
+  font-size: clamp(32px, 6vw, 56px);
+  font-weight: 800;
+  line-height: 1.2;
+  color: #111;
+}
+
+/* 弾む部分 */
+.pop {
+  display: inline-block;
+  animation: popIn 0.8s cubic-bezier(.34,1.56,.64,1) both;
+  animation-delay: 0.3s;
+}
+
+/* アニメーション定義 */
+@keyframes popIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.85);
+  }
+  60% {
+    opacity: 1;
+    transform: scale(1.08);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
